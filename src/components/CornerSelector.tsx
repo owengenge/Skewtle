@@ -73,7 +73,7 @@ export default function CornerSelector({ image, stageWidth, stageHeight, corners
                                 <Line
                                     points={[nearA.x, nearA.y, nearB.x, nearB.y]}
                                     stroke="white"
-                                    strokeWidth={1}
+                                    strokeWidth={2}
                                     dash={[6, 3]}
                                     opacity={0.7}
                                 />
@@ -83,6 +83,7 @@ export default function CornerSelector({ image, stageWidth, stageHeight, corners
                                     stroke="white"
                                     strokeWidth={2}
                                     lineCap="round"
+                                    opacity={0.7}
                                 />
                                 {/* Thick corner accent at B */}
                                 <Line
@@ -90,6 +91,7 @@ export default function CornerSelector({ image, stageWidth, stageHeight, corners
                                     stroke="white"
                                     strokeWidth={2}
                                     lineCap="round"
+                                    opacity={0.7}
                                 />
                             </React.Fragment>
                         ))}

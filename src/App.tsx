@@ -80,7 +80,8 @@ function App() {
         
         {/** Image is uploaded and in corner selection */}
         {image && corners && !warpedImage && (
-          <div>
+          <>
+            <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
             <CornerSelector
               image={image}
               stageWidth={stageWidth}
@@ -88,23 +89,23 @@ function App() {
               corners={corners}
               setCorners={setCorners}
             />
-            <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
-          </div>
+          </>
         )}
 
         {/** Image is transformed */}
         {warpedImage && (
           <>
-            <button onClick={() => setWarpedImage(null)} className="remove-btn">Edit</button>
+            <button onClick={() => setWarpedImage(null)} className="edit-btn">Edit</button>
+            <button onClick={() => {setWarpedImage(null); setImage(null)}} className='new-card-btn'>New Card</button>
+            <span onClick={handleDownload} className="download-btn">
+              <span className="material-symbols-outlined">download</span>
+            </span>
             <div className='warped-img-div'>
               <img
                 src={warpedImage.src}
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
             </div>
-            <span onClick={handleDownload} className="download-btn">
-              <span className="material-symbols-outlined">download</span>
-            </span>
           </>
         )}
       </main>
