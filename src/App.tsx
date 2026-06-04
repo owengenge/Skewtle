@@ -50,14 +50,11 @@ function App() {
 
   return (
     <div>
-
       <header>
         <h1>Skewtle</h1>
         <p>Trading card perspective correction tool</p>
       </header>
-
       <main>
-        
         {!warpedImage && (
           <CardRatio
             ratioW={ratioW}
@@ -78,7 +75,7 @@ function App() {
               corners={corners}
               setCorners={setCorners}
             />
-            <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Transform</button>
+            <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
           </div>
         )}
         {warpedImage && (
@@ -95,7 +92,7 @@ function App() {
       </main>
 
       <div className="footer">
-
+        <p>Skewtle · Open source · Made by Owen Genge</p>
       </div>
     </div>
   ) 

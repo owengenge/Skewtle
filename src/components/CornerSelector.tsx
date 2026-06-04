@@ -31,8 +31,8 @@ export default function CornerSelector({ image, stageWidth, stageHeight, corners
         const stage = e.target.getStage();
         const pos = stage.getPointerPosition();
         setPosition({
-            x: -pos.x,
-            y: -pos.y,
+            x: pos.x * (1 - ZOOM_SCALE),
+            y: pos.y * (1 - ZOOM_SCALE),
         });
     };
 
@@ -103,14 +103,17 @@ export default function CornerSelector({ image, stageWidth, stageHeight, corners
                                 height={HIT_SIZE}
                                 fill="transparent"
                                 draggable
+                                onDragStart={handleDragStart}
                                 onDragMove={(e) => {
-                                    const newCorners:Corner[] = [...corners];
+                                    const rawX = e.target.x() + HIT_SIZE / 2;
+                                    const rawY = e.target.y() + HIT_SIZE / 2;
+                                    const clampedX = Math.min(stageWidth, Math.max(0, rawX));
+                                    const clampedY = Math.min(stageHeight, Math.max(0, rawY));
+                                    e.target.x(clampedX - HIT_SIZE / 2);
+                                    e.target.y(clampedY - HIT_SIZE / 2);
+                                    const newCorners: Corner[] = [...corners];
                                     if (newCorners[i]) {
-                                        newCorners[i] = {
-                                            ...corner,
-                                            x: e.target.x() + HIT_SIZE / 2,
-                                            y: e.target.y() + HIT_SIZE / 2,
-                                        };
+                                        newCorners[i] = { ...corner, x: clampedX, y: clampedY };
                                     }
                                     setCorners(newCorners);
                                 }}
