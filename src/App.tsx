@@ -5,7 +5,6 @@ import CornerSelector from './components/CornerSelector';
 import { PAD, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
 import { transform } from './utils/transform';
 import CardRatio from './components/CardRatio';
-import DownloadIcon from '@mui/icons-material/Download';
 
 function App() {
   const [image, setImage] = useState<HTMLImageElement | null>(null);

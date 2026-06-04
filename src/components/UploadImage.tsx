@@ -19,20 +19,26 @@ export default function UploadImage ({ image, setImage }: Props) {
     }
 
     return (
-        <div
-            className="upload-img-div"
-            onDrop={(e) => {
-                e.preventDefault();
-                const file = e.dataTransfer.files[0];
-                if (file?.type.startsWith("image/")) { handleUpload(file); }
-            }}
-            onDragOver={(e) => e.preventDefault()}
-        >
-            <p>Drag and drop image or select from your device</p>
-            <input type="file" accept="image/*" onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) handleUpload(file);
-            }} />
-        </div>
+
+        <>
+            <p className="upload-tip-callout">
+                For best results and ease of use, the card should be flat with some background visible around all edges.
+            </p>
+            <div
+                className="upload-img-div"
+                onDrop={(e) => {
+                    e.preventDefault();
+                    const file = e.dataTransfer.files[0];
+                    if (file?.type.startsWith("image/")) { handleUpload(file); }
+                }}
+                onDragOver={(e) => e.preventDefault()}
+            >
+                <p>Drag and drop image or select from your device</p>
+                <input type="file" accept="image/*" onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleUpload(file);
+                }} />
+            </div>
+        </>
     );
 }
