@@ -5,6 +5,7 @@ import CornerSelector from './components/CornerSelector';
 import { PAD, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
 import { transform } from './utils/transform';
 import CardRatio from './components/CardRatio';
+import DownloadIcon from '@mui/icons-material/Download';
 
 function App() {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
@@ -48,6 +49,16 @@ function App() {
     [0, outputH],        // BL
   ];
 
+  function handleDownload() {
+    if (!warpedImage) return;
+    const a = document.createElement('a');
+    a.href = warpedImage.src;
+    a.download = 'card.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   return (
     <div>
       <header>
@@ -64,8 +75,10 @@ function App() {
           />
         )}
 
+        {/** Prompt image to be uploaded */}
         {!warpedImage && <UploadImage image={image} setImage={setImage} />}
-
+        
+        {/** Image is uploaded and in corner selection */}
         {image && corners && !warpedImage && (
           <div>
             <CornerSelector
@@ -78,15 +91,20 @@ function App() {
             <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
           </div>
         )}
+
+        {/** Image is transformed */}
         {warpedImage && (
           <>
-            <button onClick={() => setWarpedImage(null)} className="remove-btn">Undo</button>
+            <button onClick={() => setWarpedImage(null)} className="remove-btn">Edit</button>
             <div className='warped-img-div'>
               <img
                 src={warpedImage.src}
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
             </div>
+            <span onClick={handleDownload} className="download-btn">
+              <span className="material-symbols-outlined">download</span>
+            </span>
           </>
         )}
       </main>
@@ -94,6 +112,7 @@ function App() {
       <div className="footer">
         <p>Skewtle · Open source · Made by Owen Genge</p>
       </div>
+      
     </div>
   ) 
 }
