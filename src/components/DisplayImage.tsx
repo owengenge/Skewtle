@@ -4,7 +4,7 @@ import { type Dispatch, type SetStateAction } from 'react';
 import { pointAlongEdge } from '../utils/geometry';
 
 const ARM = 30;      // length of thick corner accent
-const HIT_SIZE = 32; // invisible drag target size
+const HIT_SIZE = 44; // invisible drag target size 
 
 interface Corner { x: number; y: number; label: string; }
 
@@ -13,14 +13,14 @@ interface Props {
     stageWidth: number;
     stageHeight: number;
     showCorners?: boolean;
-    corners: Corner[];
-    setCorners: Dispatch<SetStateAction<Corner[] | null>>;
+    corners?: Corner[];
+    setCorners?: Dispatch<SetStateAction<Corner[] | null>>;
 }
 
 export default function DisplayImage({ image, stageWidth, stageHeight, showCorners, corners, setCorners }: Props) {
 
     // Build edge segments for each edge A-B, split into thick-thin-thick
-    const edges = corners.map((a, i) => {
+    const edges = (corners ?? []).map((a, i) => {
         const b = corners[(i + 1) % corners.length]!;
         const nearA = pointAlongEdge(a, b, ARM);
         const nearB = pointAlongEdge(b, a, ARM);
@@ -75,7 +75,7 @@ export default function DisplayImage({ image, stageWidth, stageHeight, showCorne
                                 fill="transparent"
                                 draggable
                                 onDragMove={(e) => {
-                                    const newCorners: Corner[] = [...corners];
+                                    const newCorners:Corner[] = [...corners];
                                     if (newCorners[i]) {
                                         newCorners[i] = {
                                             ...corner,

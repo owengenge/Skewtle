@@ -14,7 +14,7 @@ export default function UploadImage ({ image, setImage }: Props) {
     // Conditionally render Remove Image button if image is already uploaded 
     if (image) {
         return (
-            <button onClick={() => setImage(null)} className="remove-btn">Remove Image</button>
+            <button onClick={() => setImage(null)} className="remove-btn">Remove</button>
         );
     }
 
