@@ -1,5 +1,5 @@
 import { Homography } from "homography";
-import { OUTPUT_W, OUTPUT_H, PAD } from '../constants';
+import { OUTPUT_W, PAD } from '../constants';
 import { getCropOffset } from './projective';
 
 interface Params {

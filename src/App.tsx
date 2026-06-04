@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import UploadImage from './components/UploadImage';
-import DisplayImage from './components/DisplayImage';
+import CornerSelector from './components/CornerSelector';
 import { PAD, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
 import { transform } from './utils/transform';
 import CardRatio from './components/CardRatio';
@@ -71,11 +71,10 @@ function App() {
 
         {image && corners && !warpedImage && (
           <div>
-            <DisplayImage
+            <CornerSelector
               image={image}
               stageWidth={stageWidth}
               stageHeight={stageHeight}
-              showCorners
               corners={corners}
               setCorners={setCorners}
             />
@@ -85,10 +84,12 @@ function App() {
         {warpedImage && (
           <>
             <button onClick={() => setWarpedImage(null)} className="remove-btn">Undo</button>
-            <img
-              src={warpedImage.src}
-              style={{ maxWidth: '100%', height: 'auto' }}
-            />
+            <div className='warped-img-div'>
+              <img
+                src={warpedImage.src}
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
           </>
         )}
       </main>

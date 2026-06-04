@@ -22,6 +22,7 @@ export default function CardRatio({ ratioW, ratioH, setRatioW, setRatioH }: Prop
                 value={ratioH}
                 onChange={e => setRatioH(Math.max(1, Number(e.target.value)))}
             />
+            <label>Default: Pokémon, One Piece, Magic: The Gathering, etc.</label>
         </div>
     );
 }

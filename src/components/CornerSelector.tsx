@@ -2,9 +2,10 @@ import React from 'react';
 import { Stage, Layer, Line, Rect, Image as KonvaImage } from 'react-konva';
 import { type Dispatch, type SetStateAction } from 'react';
 import { pointAlongEdge } from '../utils/geometry';
+import { useState } from 'react';
+import { ARM, ZOOM_SCALE } from '../constants';
 
-const ARM = 30;      // length of thick corner accent
-const HIT_SIZE = 44; // invisible drag target size 
+const HIT_SIZE = 44; // touch target size (follows Apple HIG 44pt guideline)
 
 interface Corner { x: number; y: number; label: string; }
 
@@ -12,30 +13,59 @@ interface Props {
     image: HTMLImageElement;
     stageWidth: number;
     stageHeight: number;
-    showCorners?: boolean;
-    corners?: Corner[];
-    setCorners?: Dispatch<SetStateAction<Corner[] | null>>;
+    corners: Corner[];
+    setCorners: Dispatch<SetStateAction<Corner[] | null>>;
 }
 
-export default function DisplayImage({ image, stageWidth, stageHeight, showCorners, corners, setCorners }: Props) {
+export default function CornerSelector({ image, stageWidth, stageHeight, corners, setCorners }: Props) {
+    const [scale, setScale] = useState(1);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [armLength, setArmLength] = useState(ARM);
+
+    const handleDragStart = () => {
+        setScale(ZOOM_SCALE);
+        setArmLength(ARM * ZOOM_SCALE);
+    };
+
+    const handleDrag = (e) => {
+        const stage = e.target.getStage();
+        const pos = stage.getPointerPosition();
+        setPosition({
+            x: -pos.x,
+            y: -pos.y,
+        });
+    };
+
+    const handleDragEnd = () => {
+        setScale(1);
+        setPosition({ x: 0, y: 0 });
+        setArmLength(ARM);
+    };
 
     // Build edge segments for each edge A-B, split into thick-thin-thick
     const edges = (corners ?? []).map((a, i) => {
         const b = corners[(i + 1) % corners.length]!;
-        const nearA = pointAlongEdge(a, b, ARM);
-        const nearB = pointAlongEdge(b, a, ARM);
+        const nearA = pointAlongEdge(a, b, armLength);
+        const nearB = pointAlongEdge(b, a, armLength);
         return { a, b, nearA, nearB };
     });
 
     return (
-        <Stage
-            width={stageWidth}
-            height={stageHeight}
-            className='display-img-div'
-        >
-            <Layer>
-                <KonvaImage image={image} width={stageWidth} height={stageHeight} />
-                {showCorners && (
+        <div className='edit-img-div'>
+            <Stage
+                width={stageWidth}
+                height={stageHeight}
+            >
+                <Layer
+                    scaleX={scale}
+                    scaleY={scale}
+                    x={position.x}
+                    y={position.y}
+                    onDragStart={handleDragStart}
+                    onDragMove={handleDrag}
+                    onDragEnd={handleDragEnd}
+                >
+                    <KonvaImage image={image} width={stageWidth} height={stageHeight} />
                     <>
                         {edges.map(({ a, b, nearA, nearB }, i) => (
                             <React.Fragment key={i}>
@@ -51,19 +81,18 @@ export default function DisplayImage({ image, stageWidth, stageHeight, showCorne
                                 <Line
                                     points={[a.x, a.y, nearA.x, nearA.y]}
                                     stroke="white"
-                                    strokeWidth={3}
-                                    lineCap="square"
+                                    strokeWidth={2}
+                                    lineCap="round"
                                 />
                                 {/* Thick corner accent at B */}
                                 <Line
                                     points={[b.x, b.y, nearB.x, nearB.y]}
                                     stroke="white"
-                                    strokeWidth={3}
-                                    lineCap="square"
+                                    strokeWidth={2}
+                                    lineCap="round"
                                 />
                             </React.Fragment>
                         ))}
-
                         {/* Invisible drag targets at each corner */}
                         {corners.map((corner, i) => (
                             <Rect
@@ -88,8 +117,8 @@ export default function DisplayImage({ image, stageWidth, stageHeight, showCorne
                             />
                         ))}
                     </>
-                )}
-            </Layer>
-        </Stage>
+                </Layer>
+            </Stage>
+        </div>
     );
 }
