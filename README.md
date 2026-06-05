@@ -54,11 +54,7 @@ npm run dev
 4. Press **Done** to apply the perspective correction and download the result
 
    <img src="./demo_images/output_download.png" width="300" />
-
-   ![Downloaded image](./demo_images/downloaded_img.png)
-
-> For best results, photograph the card flat with some background visible around all edges.
-
+   
 ## License
 
 MIT
