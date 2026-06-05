@@ -4,11 +4,17 @@ A trading card perspective correction tool. Upload a photo of a card taken at an
 
 ## Why
 
-When photographing trading cards without a scanner — for listings, collections, or sharing — it's hard to get a perfectly flat, top-down shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Dedicated scanning hardware fixes this but isn't accessible to most people.
+When photographing trading cards without a scanner for listings, collections, or sharing it's hard to get a perfectly flat, top-down shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Listings of cards taken without a scanner are rarely taken perfectly top-down which make it difficult to assess centering. Dedicated scanning hardware fixes this but isn't always accesible to people.
 
 Manually correcting perspective in photo editing apps is tedious, it requires precise adjustments, doesn't preserve the correct card aspect ratio, and still often leaves borders unevenly cropped. Other browser-based tools that attempt perspective correction tend to crop too tightly, cutting off card borders, or produce stretched output that's unusable for grading or centering assessment.
 
 Skewtle solves this in the browser. You take a photo however is convenient, then use the corner handles to define the card's edges. Skewtle applies a perspective transform to produce a clean, correctly proportioned output. No scanner, no desktop software and no upload to a third-party service.
+
+## Limitations
+
+Output accuracy and quality are dependent on the user's ability to precisely align the corner handles to the card edges, and the image quality of the source photo.
+
+The card must be photographed flat, in a toploader, or in a slab — warped or bent cards will produce inaccurate results. It is also recommended that the card fills a reasonable portion of the frame; too much background space around the card makes corner placement less precise and can reduce output quality.
 
 ## Features
 
