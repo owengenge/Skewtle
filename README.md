@@ -4,7 +4,7 @@ A trading card perspective correction tool. Upload a photo of a card taken at an
 
 ## Why
 
-When photographing trading cards without a scanner for listings, collections, or sharing it's hard to get a perfectly flat, top-down shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Listings of cards taken without a scanner are rarely taken perfectly top-down which make it difficult to assess centering. Dedicated scanning hardware fixes this but isn't always accesible to people.
+When photographing trading cards without a scanner for listings, collections, or sharing it's hard to get a perfectly flat, top-down shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Listings of cards taken without a scanner are rarely taken perfectly top-down which make it difficult to assess centering. Dedicated scanning hardware fixes this but isn't always accesible.
 
 Manually correcting perspective in photo editing apps is tedious, it requires precise adjustments, doesn't preserve the correct card aspect ratio, and still often leaves borders unevenly cropped. Other browser-based tools that attempt perspective correction tend to crop too tightly, cutting off card borders, or produce stretched output that's unusable for grading or centering assessment.
 
