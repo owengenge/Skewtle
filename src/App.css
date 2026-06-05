@@ -83,9 +83,7 @@ main > * { margin-inline: auto; }
   margin-bottom: 26px;
 }
 
-.customize-div > * {
-  margin-bottom: 0;
-}
+.customize-div > * { margin-bottom: 0; }
 
 /* ============================================================
    CARD RATIO
@@ -119,7 +117,7 @@ main > * { margin-inline: auto; }
 
 .ratio-input input {
   width: 64px;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   text-align: center;
   font-family: var(--font-mono);
   font-size: 15px;
@@ -148,6 +146,12 @@ main > * { margin-inline: auto; }
   margin: 0 -6px;
 }
 
+/* In the corner-adjust state the ratio card grows to match the stage width. */
+main:has(.edit-img-div) .ratio-input { max-width: none; }
+
+/* ============================================================
+   ZOOM SLIDER
+   ============================================================ */
 .zoom-slider-div {
   display: flex;
   flex-direction: column;
@@ -162,18 +166,6 @@ main > * { margin-inline: auto; }
   box-shadow: var(--shadow-sm);
 }
 
-.zoom-slider-div input[type="range"] {
-  accent-color: var(--accent);
-  width: 90%;
-}
-
-.zoom-slider-div p {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
 .zoom-slider-div label {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -183,10 +175,16 @@ main > * { margin-inline: auto; }
   color: var(--accent-deep);
 }
 
-/* In the corner-adjust state the ratio card grows to match the stage width.
-   (:has detects the stage; in the upload state the card stays capped above.) */
-main:has(.edit-img-div) .ratio-input {
-  max-width: none;
+.zoom-slider-div p {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.zoom-slider-div input[type="range"] {
+  accent-color: var(--accent);
+  width: 90%;
 }
 
 /* ============================================================
@@ -225,7 +223,7 @@ main:has(.edit-img-div) .ratio-input {
   border-radius: var(--r-pill);
 }
 
-/* a drop zone literally shaped like a trading card (5:7) */
+/* Drop zone shaped like a trading card (5:7) */
 .upload-img-div {
   width: 60%;
   aspect-ratio: 5 / 7;
@@ -237,9 +235,8 @@ main:has(.edit-img-div) .ratio-input {
   justify-content: center;
   gap: 24px;
   text-align: center;
-  background:
-    radial-gradient(120% 70% at 50% 0%, var(--surface) 0%, var(--surface-2) 100%);
-  border: 2px dashed var(--line-strong); /* light grey, dashed */
+  background: radial-gradient(120% 70% at 50% 0%, var(--surface) 0%, var(--surface-2) 100%);
+  border: 2px dashed var(--line-strong);
   border-radius: var(--r-lg);
   transform: perspective(700px) rotateY(-8deg) rotateX(3deg);
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.3s ease, box-shadow 0.2s ease;
@@ -256,12 +253,8 @@ main:has(.edit-img-div) .ratio-input {
   font-size: clamp(16px, 2.2vw, 19px);
   font-weight: 500;
   line-height: 1.35;
-  color: var(--ink);
-  margin-bottom: 0;
-}
-
-.upload-img-div p:not(.upload-tip) {
   color: var(--faint);
+  margin-bottom: 0;
 }
 
 .upload-img-div p.upload-tip {
@@ -297,7 +290,7 @@ main:has(.edit-img-div) .ratio-input {
 }
 
 /* ============================================================
-   BUTTONS — base for real <button> elements inside main
+   BUTTONS
    ============================================================ */
 main button {
   appearance: none;
@@ -328,21 +321,7 @@ main button:hover {
 
 main button:active { transform: translateY(0); }
 
-/* "Done" — same treatment as the other buttons; just keeps its spacing. */
-main > button:not([class]) {
-  margin-bottom: 22px;
-}
-
-/* SECONDARY toolbar buttons in the result view */
-.edit-btn,
-.new-card-btn {
-  margin: 0 6px 22px;
-}
-
-.clear-btn {
-  margin-bottom: 22px;
-  color: var(--ink-2);
-}
+.clear-btn { color: var(--ink-2); }
 
 .clear-btn:hover {
   color: oklch(0.5 0.18 25);
@@ -369,9 +348,8 @@ main > button:not([class]) {
 .edit-img-div canvas { border-radius: var(--r-lg); }
 
 /* ============================================================
-   RESULT — download icon button + warped image frame
+   RESULT
    ============================================================ */
-/* download = an icon button that matches the other (neutral) buttons */
 .download-btn {
   display: inline-grid;
   place-items: center;
