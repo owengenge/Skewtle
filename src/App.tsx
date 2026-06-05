@@ -5,6 +5,7 @@ import CornerSelector from './components/CornerSelector';
 import { PAD, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
 import { transform } from './utils/transform';
 import CardRatio from './components/CardRatio';
+import ZoomSlider from './components/ZoomSlider';
 
 function App() {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
@@ -12,6 +13,8 @@ function App() {
   const [warpedImage, setWarpedImage] = useState<HTMLImageElement | null>(null);
   const [ratioW, setRatioW] = useState(5);
   const [ratioH, setRatioH] = useState(7);
+  const [zoom, setZoom] = useState(1.5);
+
   const cardRatio = ratioH / ratioW;
   const outputH = OUTPUT_W * cardRatio;
 
@@ -66,12 +69,17 @@ function App() {
       </header>
       <main>
         {!warpedImage && (
-          <CardRatio
-            ratioW={ratioW}
-            ratioH={ratioH}
-            setRatioW={setRatioW}
-            setRatioH={setRatioH}
-          />
+          <div className='customize-div'>
+            <CardRatio
+              ratioW={ratioW}
+              ratioH={ratioH}
+              setRatioW={setRatioW}
+              setRatioH={setRatioH}
+            />
+            <ZoomSlider zoom={zoom} setZoom={setZoom} />
+          </div>
+          
+          
         )}
 
         {/** Prompt image to be uploaded */}
@@ -87,6 +95,7 @@ function App() {
               stageHeight={stageHeight}
               corners={corners}
               setCorners={setCorners}
+              zoom={zoom}
             />
           </>
         )}

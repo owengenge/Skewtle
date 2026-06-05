@@ -4,8 +4,4 @@ export const PAD = 20; // inset from canvas edge to avoid clipping rounded card 
 
 // Input stage
 export const MAX_WIDTH = Math.min(800, window.innerWidth - 32);
-export const MAX_HEIGHT = MAX_WIDTH * (3 / 4);
-
-// Corner selector
-export const ARM = 30;        // length of the thick corner accent lines
-export const ZOOM_SCALE = 2;  // scale applied to the stage while dragging a corner
+export const MAX_HEIGHT = Math.max(MAX_WIDTH * (3 / 4), window.innerHeight * 0.65);

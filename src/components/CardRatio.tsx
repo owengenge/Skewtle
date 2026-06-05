@@ -7,6 +7,10 @@ interface Props {
     setRatioH: (val: number) => void;
 }
 
+/*
+ * Inputs for setting the card aspect ratio. Accepts only positive integers,
+ * resetting to the last valid value on blur if the field is left empty.
+ */
 export default function CardRatio({ ratioW, ratioH, setRatioW, setRatioH }: Props) {
     const [wStr, setWStr] = useState(String(ratioW));
     const [hStr, setHStr] = useState(String(ratioH));
@@ -39,7 +43,6 @@ export default function CardRatio({ ratioW, ratioH, setRatioW, setRatioH }: Prop
                 onChange={e => handleChange(e.target.value, setHStr, setRatioH)}
                 onBlur={() => handleBlur(hStr, ratioH, setHStr)}
             />
-            <label>Default: Pokémon, One Piece, Magic: The Gathering, etc.</label>
         </div>
     );
 }

@@ -22,7 +22,7 @@ export default function UploadImage ({ image, setImage }: Props) {
 
         <>
             <p className="upload-tip-callout">
-                For best results and ease of use, the card should be flat with some background visible around all edges.
+                For best results, the card should be flat with some background visible around all edges.
             </p>
             <div
                 className="upload-img-div"
