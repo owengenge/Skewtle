@@ -43,17 +43,17 @@ npm run dev
 1. Set the card ratio if it differs from the default 5:7
 2. Upload or drag and drop a photo of your card
 
-   ![Source photo](./demo_images/source_img.jpeg)
+   <img src="./demo_images/source_img.jpeg" width="300" />
 
 3. Drag the four corner handles to the corners of the card and align the edges
 
-   ![Aligning corners](./demo_images/setting_edges.png)
+   <img src="./demo_images/setting_edges.png" width="300" />
 
-   ![Corners aligned](./demo_images/done_edges.png)
+   <img src="./demo_images/done_edges.png" width="300" />
 
 4. Press **Done** to apply the perspective correction and download the result
 
-   ![Output and download](./demo_images/output_download.png)
+   <img src="./demo_images/output_download.png" width="300" />
 
    ![Downloaded image](./demo_images/downloaded_img.png)
 
