@@ -1,12 +1,14 @@
 # Skewtle
 
-A trading card perspective correction tool. Upload a photo of a card taken at an angle, drag the corner handles to align with the card edges, and Skewtle will straighten and crop it into a clean output image.
+A trading card perspective correction tool. Upload a photo of a card taken at an angle, drag the corner handles to align with the card edges, and Skewtle will flatten and crop it into a clean output image.
 
 ## Why
 
-When photographing trading cards — for listings, collections, or sharing — it's hard to get a perfectly flat, straight-on shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Dedicated scanning hardware fixes this but isn't accessible to most people.
+When photographing trading cards without a scanner — for listings, collections, or sharing — it's hard to get a perfectly flat, top-down shot. Small angles and perspective distortion make cards look skewed, uneven, or unprofessional. Dedicated scanning hardware fixes this but isn't accessible to most people.
 
-Skewtle solves this in the browser. You take a photo however is convenient, then use the corner handles to define the card's edges, and Skewtle applies a perspective transform to produce a clean, correctly proportioned output — no scanner, no desktop software, no upload to a third-party service.
+Manually correcting perspective in photo editing apps is tedious, it requires precise adjustments, doesn't preserve the correct card aspect ratio, and still often leaves borders unevenly cropped. Other browser-based tools that attempt perspective correction tend to crop too tightly, cutting off card borders, or produce stretched output that's unusable for grading or centering assessment.
+
+Skewtle solves this in the browser. You take a photo however is convenient, then use the corner handles to define the card's edges. Skewtle applies a perspective transform to produce a clean, correctly proportioned output. No scanner, no desktop software and no upload to a third-party service.
 
 ## Features
 
