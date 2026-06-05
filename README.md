@@ -28,7 +28,7 @@ npm run dev
 
 1. Set the card ratio if it differs from the default 5:7
 2. Upload or drag and drop a photo of your card
-3. Drag the four corner handles to the corners of the card
+3. Drag the four corner handles to the corners of the card and align edges
 4. Press **Done** to apply the perspective correction
 5. Download the result
 
