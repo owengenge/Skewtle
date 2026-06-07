@@ -4,7 +4,7 @@ import { pointAlongEdge } from '../utils/geometry';
 
 const STROKE_WIDTH = 2;
 const ARM = 30;
-const OPACITY = .6;
+const OPACITY = .5;
 const COLOUR = 'red';
 
 interface Corner { x: number; y: number; label: string; }
