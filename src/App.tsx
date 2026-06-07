@@ -63,9 +63,13 @@ function App() {
 
   return (
     <div>
+      <nav className="nav">
+        <span className="nav-item nav-item--active">Perspective Correction</span>
+        <span className="nav-item nav-item--soon">Centering Tool<span className="nav-badge">Coming Soon</span></span>
+      </nav>
       <header>
         <h1>Skewtle</h1>
-        <p>Trading card perspective correction tool</p>
+        <p>Scan, correct, and analyze your cards</p>
       </header>
       <main>
         {/** Customization */}
@@ -79,8 +83,6 @@ function App() {
             />
             <ZoomSlider zoom={zoom} setZoom={setZoom} />
           </div>
-          
-          
         )}
 
         {/** Prompt image to be uploaded */}

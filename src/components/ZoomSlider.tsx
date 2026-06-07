@@ -6,7 +6,7 @@ interface Props {
 export default function ZoomSlider({ zoom, setZoom }: Props) {
     return (
         <div className="zoom-slider-div">
-            <label>Zoom</label>
+            <label>Drag Zoom</label>
             <p>{zoom}x</p>
             <input
                 type="range"
