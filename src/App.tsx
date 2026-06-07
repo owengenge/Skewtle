@@ -68,6 +68,7 @@ function App() {
         <p>Trading card perspective correction tool</p>
       </header>
       <main>
+        {/** Customization */}
         {!warpedImage && (
           <div className='customize-div'>
             <CardRatio
@@ -108,6 +109,9 @@ function App() {
             <span onClick={handleDownload} className="download-btn">
               <span className="material-symbols-outlined">download</span>
             </span>
+            <p className="info-callout">
+              Not happy with the result? Try refining the corner alignment or using a higher quality source image.
+            </p>
             <div className='warped-img-div'>
               <img
                 src={warpedImage.src}

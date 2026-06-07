@@ -26,6 +26,10 @@ export default function DragTarget({ corner, index, corners, stageWidth, stageHe
             key={corner.label}
             x={corner.x - HIT_SIZE / 2}
             y={corner.y - HIT_SIZE / 2}
+            
+            // stroke="red"
+            // opacity={0.4}
+
             width={HIT_SIZE}
             height={HIT_SIZE}
             fill="transparent"

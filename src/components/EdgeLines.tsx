@@ -3,7 +3,9 @@ import { Line } from 'react-konva';
 import { pointAlongEdge } from '../utils/geometry';
 
 const STROKE_WIDTH = 2;
-const ARM = 40;
+const ARM = 30;
+const OPACITY = .6;
+const COLOUR = 'red';
 
 interface Corner { x: number; y: number; label: string; }
 
@@ -30,26 +32,26 @@ export default function EdgeLines({ corners }: Props) {
                     {/* Thin dashed middle segment */}
                     <Line
                         points={[nearA.x, nearA.y, nearB.x, nearB.y]}
-                        stroke="white"
+                        stroke={COLOUR}
                         strokeWidth={STROKE_WIDTH}
                         dash={[6, 3]}
-                        opacity={0.7}
+                        opacity={OPACITY}
                     />
                     {/* Thick corner accent at A */}
                     <Line
                         points={[a.x, a.y, nearA.x, nearA.y]}
-                        stroke="red"
+                        stroke={COLOUR}
                         strokeWidth={STROKE_WIDTH+1}
                         lineCap="round"
-                        opacity={0.7}
+                        opacity={OPACITY}
                     />
                     {/* Thick corner accent at B */}
                     <Line
                         points={[b.x, b.y, nearB.x, nearB.y]}
-                        stroke="red"
+                        stroke={COLOUR}
                         strokeWidth={STROKE_WIDTH+1}
                         lineCap="round"
-                        opacity={0.7}
+                        opacity={OPACITY}
                     />
                 </React.Fragment>
             ))}
