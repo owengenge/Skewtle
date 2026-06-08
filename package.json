@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.0.1",
     "@mui/material": "^9.0.1",
+    "@vercel/analytics": "^2.0.1",
     "homography": "^1.8.1",
     "konva": "^10.3.0",
     "react": "^19.2.6",
