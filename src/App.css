@@ -36,6 +36,7 @@
   cursor: default;
   color: var(--muted);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .nav-item--active {
