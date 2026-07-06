@@ -1,6 +1,7 @@
 import './App.css'
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Perspective from './pages/Perspective';
+import Centering from './pages/Centering';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Perspective />} />
+          <Route path="/centering-tool" element={<Perspective />} />
         </Routes>
       </main>
 
