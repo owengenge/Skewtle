@@ -34,20 +34,23 @@ export default function DragTarget({ corner, index, corners, stageWidth, stageHe
             height={HIT_SIZE}
             fill="transparent"
             draggable
+            dragBoundFunc={(pos) => {
+                const centerX = pos.x + HIT_SIZE / 2;
+                const centerY = pos.y + HIT_SIZE / 2;
+                const clampedX = Math.min(stageWidth, Math.max(0, centerX));
+                const clampedY = Math.min(stageHeight, Math.max(0, centerY));
+                return { x: clampedX - HIT_SIZE / 2, y: clampedY - HIT_SIZE / 2 };
+            }}
             onDragStart={(e) => {
                 const pos = e.target.getStage()!.getPointerPosition()!;
                 onDragStart(corner, pos);
             }}
             onDragMove={(e) => {
-                const rawX = e.target.x() + HIT_SIZE / 2;
-                const rawY = e.target.y() + HIT_SIZE / 2;
-                const clampedX = Math.min(stageWidth, Math.max(0, rawX));
-                const clampedY = Math.min(stageHeight, Math.max(0, rawY));
-                e.target.x(clampedX - HIT_SIZE / 2);
-                e.target.y(clampedY - HIT_SIZE / 2);
+                const x = e.target.x() + HIT_SIZE / 2;
+                const y = e.target.y() + HIT_SIZE / 2;
                 const pos = e.target.getStage()!.getPointerPosition()!;
                 const newCorners = [...corners];
-                const updatedCorner = { ...corner, x: clampedX, y: clampedY };
+                const updatedCorner = { ...corner, x, y };
                 if (newCorners[index]) {
                     newCorners[index] = updatedCorner;
                 }

@@ -1,14 +1,15 @@
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import UploadImage from './components/UploadImage';
 import CornerSelector from './components/CornerSelector';
-import { PAD, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
+import { HANDLE_INSET, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from './constants';
 import { transform } from './utils/transform';
 import CardRatio from './components/CardRatio';
 import ZoomSlider from './components/ZoomSlider';
 
 function App() {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
+  const [prevImage, setPrevImage] = useState<HTMLImageElement | null>(null);
   const [corners, setCorners] = useState<{x: number, y: number, label: string}[] | null>(null);
   const [warpedImage, setWarpedImage] = useState<HTMLImageElement | null>(null);
   const [ratioW, setRatioW] = useState(5);
@@ -21,23 +22,17 @@ function App() {
   const scale = image ? Math.min(MAX_WIDTH / image.naturalWidth, MAX_HEIGHT / image.naturalHeight, 1) : 1;
   const stageWidth = image ? image.naturalWidth * scale : 0;
   const stageHeight = image ? image.naturalHeight * scale : 0;
-  
-  // On image load set corner adjustment handles 
-  useEffect(() => {
-    if (image) {
-      const w = stageWidth;
-      const h = stageHeight;
-  
-      setCorners([
-        { x: PAD, y: PAD, label: 'TL' },
-        { x: w - PAD, y: PAD, label: 'TR' },
-        { x: w - PAD, y: h - PAD, label: 'BR' },
-        { x: PAD, y: h - PAD, label: 'BL' }
-      ]);
-    } else {
-      setCorners(null);
-    }
-  }, [image]);
+
+  // Reset corner adjustment handles whenever a new image is loaded (or cleared)
+  if (image !== prevImage) {
+    setPrevImage(image);
+    setCorners(image ? [
+      { x: HANDLE_INSET, y: HANDLE_INSET, label: 'TL' },
+      { x: stageWidth - HANDLE_INSET, y: HANDLE_INSET, label: 'TR' },
+      { x: stageWidth - HANDLE_INSET, y: stageHeight - HANDLE_INSET, label: 'BR' },
+      { x: HANDLE_INSET, y: stageHeight - HANDLE_INSET, label: 'BL' }
+    ] : null);
+  }
 
   // Divide by scale to convert stage coordinates back to original image pixel coordinates
   const srcPoints:[number, number][] = (corners ?? []).map(c => {

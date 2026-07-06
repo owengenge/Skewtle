@@ -39,7 +39,10 @@ export async function transform({ srcPoints, dstPoints, image, setWarpedImage, c
     cropped.width = OUTPUT_W;
     const outputH = OUTPUT_W * cardRatio;
     cropped.height = outputH;
-    cropped.getContext('2d')!.drawImage(
+    const cropCtx = cropped.getContext('2d')!;
+    cropCtx.imageSmoothingEnabled = true;
+    cropCtx.imageSmoothingQuality = 'high';
+    cropCtx.drawImage(
         full,
         cropX - PAD, cropY - PAD,         // source start (expanded outward)
         OUTPUT_W + PAD * 2, outputH + PAD * 2, // source region (wider + taller)
