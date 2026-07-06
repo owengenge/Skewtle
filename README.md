@@ -36,7 +36,7 @@ npm run dev
 - React + TypeScript
 - Vite
 - Konva / react-konva (canvas rendering)
-- [homography](https://www.npmjs.com/package/homography) (perspective transform)
+- [homography](https://github.com/Eric-Canas/Homography.js/) (perspective transform)
 
 ## Usage
 
