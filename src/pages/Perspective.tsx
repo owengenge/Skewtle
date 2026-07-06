@@ -45,14 +45,19 @@ export default function Perspective() {
     [0, outputH],        // BL
   ];
 
-  function handleDownload() {
+  async function handleDownload() {
     if (!warpedImage) return;
+    // Convert the (potentially huge) data URL to a blob URL — mobile browsers
+    // handle long inline data: URLs poorly when used as an anchor download target.
+    const blob = await (await fetch(warpedImage.src)).blob();
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = warpedImage.src;
+    a.href = url;
     a.download = 'card.png';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   return (
