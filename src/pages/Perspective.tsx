@@ -45,11 +45,16 @@ export default function Perspective() {
     [0, outputH],        // BL
   ];
 
-  async function handleDownload() {
+  function handleDownload() {
     if (!warpedImage) return;
-    // Convert the (potentially huge) data URL to a blob URL — mobile browsers
-    // handle long inline data: URLs poorly when used as an anchor download target.
-    const blob = await (await fetch(warpedImage.src)).blob();
+    // Convert the data URL to a blob URL by hand (not via fetch()) — WebKit
+    // (Safari and all iOS browsers) throws on fetch() of a data: URL.
+    const [header, base64] = warpedImage.src.split(',');
+    const mime = header.match(/data:(.*?);base64/)?.[1] ?? 'image/png';
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    const blob = new Blob([bytes], { type: mime });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
