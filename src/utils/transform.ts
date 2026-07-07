@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Homography } from "homography";
 import { OUTPUT_W, PAD } from '../constants';
 import { getCropOffset } from './projective';
