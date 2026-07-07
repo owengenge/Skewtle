@@ -125,7 +125,7 @@ export default function Perspective() {
           <div className='warped-img-div'>
             <img
               src={warpedImage.src}
-              style={{ maxWidth: '100%', height: 'auto' }}
+              style={{ maxWidth: '100%', width: '280px', height: 'auto' }}
             />
           </div>
         </>

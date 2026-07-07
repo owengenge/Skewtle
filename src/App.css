@@ -246,7 +246,7 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
   padding: 12px 16px 12px 42px;
   position: relative;
   text-align: left;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--ink-2);
   background: var(--accent-soft);
@@ -282,7 +282,7 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
     padding: 12px 16px 12px 42px;
     position: relative;
     text-align: left;
-    font-size: 13.5px;
+    font-size: 13px;
     line-height: 1.5;
     color: var(--ink-2);
     background: var(--accent-soft);
@@ -318,7 +318,7 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
   padding: 12px 16px 12px 42px;
   position: relative;
   text-align: left;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--ink-2);
   background: var(--accent-soft);

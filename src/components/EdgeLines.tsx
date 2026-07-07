@@ -3,7 +3,7 @@ import { Line } from 'react-konva';
 import { pointAlongEdge } from '../utils/geometry';
 
 const STROKE_WIDTH = 2;
-const ARM = 30;
+const ARM = 20;
 const OPACITY = .5;
 const COLOUR = 'red';
 
@@ -41,7 +41,7 @@ export default function EdgeLines({ corners }: Props) {
                     <Line
                         points={[a.x, a.y, nearA.x, nearA.y]}
                         stroke={COLOUR}
-                        strokeWidth={STROKE_WIDTH+1}
+                        strokeWidth={STROKE_WIDTH}
                         lineCap="round"
                         opacity={OPACITY}
                     />
@@ -49,7 +49,7 @@ export default function EdgeLines({ corners }: Props) {
                     <Line
                         points={[b.x, b.y, nearB.x, nearB.y]}
                         stroke={COLOUR}
-                        strokeWidth={STROKE_WIDTH+1}
+                        strokeWidth={STROKE_WIDTH}
                         lineCap="round"
                         opacity={OPACITY}
                     />
