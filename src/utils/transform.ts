@@ -42,10 +42,13 @@ export async function transform({ srcPoints, dstPoints, image, setWarpedImage, c
     const cropCtx = cropped.getContext('2d')!;
     cropCtx.imageSmoothingEnabled = true;
     cropCtx.imageSmoothingQuality = 'high';
+    // Scale the vertical pad by cardRatio so the crop-to-output scale factor
+    // matches on both axes — otherwise a non-square card ratio gets distorted.
+    const padY = PAD * cardRatio;
     cropCtx.drawImage(
         full,
-        cropX - PAD, cropY - PAD,         // source start (expanded outward)
-        OUTPUT_W + PAD * 2, outputH + PAD * 2, // source region (wider + taller)
+        cropX - PAD, cropY - padY,         // source start (expanded outward)
+        OUTPUT_W + PAD * 2, outputH + padY * 2, // source region (wider + taller)
         0, 0,                              // destination start
         OUTPUT_W, outputH                 // destination size (scaled to fit)
     );
