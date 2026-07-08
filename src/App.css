@@ -470,6 +470,50 @@ main button:active { transform: translateY(0); }
 .edit-img-div canvas { border-radius: var(--r-lg); }
 
 /* ============================================================
+   CENTERING STATS
+   ============================================================ */
+.centering-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.centering-ratio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease;
+}
+
+.centering-ratio-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-deep);
+}
+
+.centering-ratio-value {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.centering-ratio--good { border-color: oklch(0.65 0.16 145); }
+.centering-ratio--warn { border-color: oklch(0.75 0.16 90); }
+.centering-ratio--bad  { border-color: oklch(0.6 0.19 25); }
+
+/* ============================================================
    RESULT
    ============================================================ */
 .download-btn {
@@ -542,7 +586,8 @@ main button:active { transform: translateY(0); }
 @media (max-width: 520px) {
   main > button:not([class]) { padding: 0 30px; }
   .edit-btn,
-  .new-card-btn { padding: 0 18px; }
+  .new-card-btn,
+  .centering-btn { padding: 0 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

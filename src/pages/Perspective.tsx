@@ -1,12 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import UploadImage from '../components/UploadImage';
 import CornerSelector from '../components/CornerSelector';
 import { HANDLE_INSET, MAX_WIDTH, MAX_HEIGHT, OUTPUT_W } from '../constants';
 import { transform } from '../utils/transform';
+import { downloadImage } from '../utils/downloadImage';
 import CardRatio from '../components/CardRatio';
 import ZoomSlider from '../components/ZoomSlider';
 
-export default function Perspective() {
+interface Props {
+  setCenteringImage: (img: HTMLImageElement | null) => void;
+}
+
+export default function Perspective({ setCenteringImage }: Props) {
+  const navigate = useNavigate();
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [prevImage, setPrevImage] = useState<HTMLImageElement | null>(null);
   const [corners, setCorners] = useState<{x: number, y: number, label: string}[] | null>(null);
@@ -45,39 +52,6 @@ export default function Perspective() {
     [0, outputH],        // BL
   ];
 
-  async function handleDownload() {
-    if (!warpedImage) return;
-    // Convert the data URL to a blob by hand (not via fetch()) — WebKit
-    // (Safari and all iOS browsers) throws on fetch() of a data: URL.
-    const [header, base64] = warpedImage.src.split(',');
-    const mime = header.match(/data:(.*?);base64/)?.[1] ?? 'image/png';
-    const binary = atob(base64);
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-    const blob = new Blob([bytes], { type: mime });
-    const file = new File([blob], 'card.png', { type: mime });
-
-    // Prefer the native share sheet (saves straight to Photos on iOS) when available
-    if (navigator.canShare?.({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file] });
-        return;
-      } catch (err) {
-        // User cancelled the share sheet — leave it there, don't force a download too
-        if (err instanceof Error && err.name === 'AbortError') return;
-      }
-    }
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'card.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
   return (
     <>
       {/** Customization */}
@@ -94,7 +68,14 @@ export default function Perspective() {
       )}
 
       {/** Prompt image to be uploaded */}
-      {!warpedImage && <UploadImage image={image} setImage={setImage} />}
+      {!warpedImage && 
+        <>
+          <p className="upload-tip-callout">
+            For best results, the card should be flat in the image with some background visible around all edges. Higher image quality will produce a cleaner output.
+          </p>
+          <UploadImage image={image} setImage={setImage} />
+        </>
+      }
 
       {/** Image is uploaded and in corner selection */}
       {image && corners && !warpedImage && (
@@ -116,7 +97,8 @@ export default function Perspective() {
         <>
           <button onClick={() => setWarpedImage(null)} className="edit-btn">Edit</button>
           <button onClick={() => {setWarpedImage(null); setImage(null)}} className='new-card-btn'>New Card</button>
-          <span onClick={handleDownload} className="download-btn">
+          <button onClick={() => { setCenteringImage(warpedImage); navigate('/centering-tool'); }} className='centering-btn'>Center</button>
+          <span onClick={() => downloadImage(warpedImage)} className="download-btn">
             <span className="material-symbols-outlined">download</span>
           </span>
           <p className="info-callout">
