@@ -21,9 +21,6 @@ export default function UploadImage ({ image, setImage }: Props) {
     return (
 
         <>
-            <p className="upload-tip-callout">
-                For best results, the card should be flat in the image with some background visible around all edges. Higher image quality will produce a cleaner output.
-            </p>
             <div
                 className="upload-img-div"
                 onDrop={(e) => {

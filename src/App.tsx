@@ -1,23 +1,30 @@
+import { useState } from 'react';
 import './App.css'
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Perspective from './pages/Perspective';
+import Centering from './pages/Centering';
 
 function App() {
+  const [centeringImage, setCenteringImage] = useState<HTMLImageElement | null>(null);
+
   return (
     <div>
       <nav className="nav">
         <NavLink to="/" className={({ isActive }) => `nav-item${isActive ? ' nav-item--active' : ''}`}>
           Perspective Correction
         </NavLink>
-        <span className="nav-item nav-item--soon">Centering Tool<span className="nav-badge">Coming Soon</span></span>
+        <NavLink to="/centering-tool" className={({ isActive }) => `nav-item${isActive ? ' nav-item--active' : ''}`}>
+          Centering Tool
+        </NavLink>
       </nav>
       <header>
         <h1>Skewtle</h1>
-        <p>Scan, correct, and analyze your cards</p>
+        <p>Correct and analyze your cards</p>
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Perspective />} />
+          <Route path="/" element={<Perspective setCenteringImage={setCenteringImage} />} />
+          <Route path="/centering-tool" element={<Centering image={centeringImage} setImage={setCenteringImage} />} />
         </Routes>
       </main>
 
