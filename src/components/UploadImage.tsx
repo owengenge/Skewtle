@@ -1,3 +1,5 @@
+import { Trash } from 'lucide-react';
+
 interface Props {
     image: HTMLImageElement | null;
     setImage: (img: HTMLImageElement | null) => void;
@@ -11,10 +13,12 @@ export default function UploadImage ({ image, setImage }: Props) {
         img.src = URL.createObjectURL(file);
     }
 
-    // Conditionally render Clear Image button if image is already uploaded 
+    // Conditionally render Clear Image button if image is already uploaded
     if (image) {
         return (
-            <button onClick={() => setImage(null)} className="clear-btn">Clear</button>
+            <span onClick={() => setImage(null)} className="download-btn clear-btn">
+                <Trash size={20} />
+            </span>
         );
     }
 

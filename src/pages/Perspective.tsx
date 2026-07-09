@@ -7,6 +7,7 @@ import { transform } from '../utils/transform';
 import { downloadImage } from '../utils/downloadImage';
 import CardRatio from '../components/CardRatio';
 import ZoomSlider from '../components/ZoomSlider';
+import { Trash, Download } from 'lucide-react';
 
 interface Props {
   setCenteringImage: (img: HTMLImageElement | null) => void;
@@ -20,7 +21,7 @@ export default function Perspective({ setCenteringImage }: Props) {
   const [warpedImage, setWarpedImage] = useState<HTMLImageElement | null>(null);
   const [ratioW, setRatioW] = useState(5);
   const [ratioH, setRatioH] = useState(7);
-  const [zoom, setZoom] = useState(1.5);
+  const [zoom, setZoom] = useState(2);
 
   const cardRatio = ratioH / ratioW;
   const outputH = OUTPUT_W * cardRatio;
@@ -54,6 +55,11 @@ export default function Perspective({ setCenteringImage }: Props) {
 
   return (
     <>
+      <div className="page-intro">
+        <p className="page-intro-title">Perspective Correction</p>
+        <p className="page-intro-body">Drag the handles to the card's corners to align its edges, then click Done to correct the image.</p>
+      </div>
+
       {/** Customization */}
       {!warpedImage && (
         <div className='customize-div'>
@@ -69,18 +75,16 @@ export default function Perspective({ setCenteringImage }: Props) {
 
       {/** Prompt image to be uploaded */}
       {!warpedImage && 
-        <>
-          <p className="upload-tip-callout">
-            For best results, the card should be flat in the image with some background visible around all edges. Higher image quality will produce a cleaner output.
-          </p>
-          <UploadImage image={image} setImage={setImage} />
-        </>
+        <UploadImage image={image} setImage={setImage} />
       }
 
       {/** Image is uploaded and in corner selection */}
       {image && corners && !warpedImage && (
         <>
           <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
+          <p className="upload-tip-callout">
+            Ensure the card is flat with some background visible around all edges.
+          </p>
           <CornerSelector
             image={image}
             stageWidth={stageWidth}
@@ -95,21 +99,18 @@ export default function Perspective({ setCenteringImage }: Props) {
       {/** Image is transformed */}
       {warpedImage && (
         <>
+          <button onClick={() => {setWarpedImage(null); setImage(null)}} className='new-card-btn clear-btn'><Trash size={18}/></button>
           <button onClick={() => setWarpedImage(null)} className="edit-btn">Edit</button>
-          <button onClick={() => {setWarpedImage(null); setImage(null)}} className='new-card-btn'>New Card</button>
           <button onClick={() => { setCenteringImage(warpedImage); navigate('/centering-tool'); }} className='centering-btn'>Center</button>
-          <span onClick={() => downloadImage(warpedImage)} className="download-btn">
-            <span className="material-symbols-outlined">download</span>
-          </span>
+          <span onClick={() => downloadImage(warpedImage)} className="download-btn"><Download size={18}/></span>
           <p className="info-callout">
-            Not happy with the result? Try refining the corner alignment or using a higher quality source image.
+            Refining edge alignment will yield better results.
           </p>
-          <div className='warped-img-div'>
-            <img
-              src={warpedImage.src}
-              style={{ maxWidth: '100%', width: '280px', height: 'auto' }}
-            />
-          </div>
+          <img
+            src={warpedImage.src}
+            className="warped-img"
+            style={{ width: stageWidth, maxWidth: '100%', height: 'auto' }}
+          />
         </>
       )}
     </>

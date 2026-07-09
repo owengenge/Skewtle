@@ -28,21 +28,23 @@ export default function CardRatio({ ratioW, ratioH, setRatioW, setRatioH }: Prop
     return (
         <div className="ratio-input">
             <label>Card ratio</label>
-            <input
-                type="text"
-                value={wStr}
-                onKeyDown={e => /[^0-9]/.test(e.key) && e.key.length === 1 && e.preventDefault()}
-                onChange={e => handleChange(e.target.value, setWStr, setRatioW)}
-                onBlur={() => handleBlur(wStr, ratioW, setWStr)}
-            />
-            <span>:</span>
-            <input
-                type="text"
-                value={hStr}
-                onKeyDown={e => /[^0-9]/.test(e.key) && e.key.length === 1 && e.preventDefault()}
-                onChange={e => handleChange(e.target.value, setHStr, setRatioH)}
-                onBlur={() => handleBlur(hStr, ratioH, setHStr)}
-            />
+            <div className="ratio-input-fields">
+                <input
+                    type="text"
+                    value={wStr}
+                    onKeyDown={e => /[^0-9]/.test(e.key) && e.key.length === 1 && e.preventDefault()}
+                    onChange={e => handleChange(e.target.value, setWStr, setRatioW)}
+                    onBlur={() => handleBlur(wStr, ratioW, setWStr)}
+                />
+                <span>:</span>
+                <input
+                    type="text"
+                    value={hStr}
+                    onKeyDown={e => /[^0-9]/.test(e.key) && e.key.length === 1 && e.preventDefault()}
+                    onChange={e => handleChange(e.target.value, setHStr, setRatioH)}
+                    onBlur={() => handleBlur(hStr, ratioH, setHStr)}
+                />
+            </div>
         </div>
     );
 }

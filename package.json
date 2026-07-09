@@ -17,6 +17,7 @@
     "@vercel/analytics": "^2.0.1",
     "homography": "^1.8.1",
     "konva": "^10.3.0",
+    "lucide-react": "^1.23.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-dropzone": "^15.0.0",

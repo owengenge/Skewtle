@@ -11,7 +11,7 @@ export default function ZoomSlider({ zoom, setZoom }: Props) {
             <input
                 type="range"
                 min={1}
-                max={2}
+                max={3}
                 step={0.05}
                 value={zoom}
                 onChange={e => setZoom(Number(e.target.value))}
