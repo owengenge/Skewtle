@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UploadImage from '../components/UploadImage';
 import CornerSelector from '../components/CornerSelector';
@@ -10,14 +10,24 @@ import ZoomSlider from '../components/ZoomSlider';
 
 interface Props {
   setCenteringImage: (img: HTMLImageElement | null) => void;
+  image: HTMLImageElement | null;
+  setImage: Dispatch<SetStateAction<HTMLImageElement | null>>;
+  prevImage: HTMLImageElement | null;
+  setPrevImage: Dispatch<SetStateAction<HTMLImageElement | null>>;
+  corners: {x: number, y: number, label: string}[] | null;
+  setCorners: Dispatch<SetStateAction<{x: number, y: number, label: string}[] | null>>;
+  warpedImage: HTMLImageElement | null;
+  setWarpedImage: Dispatch<SetStateAction<HTMLImageElement | null>>;
 }
 
-export default function Perspective({ setCenteringImage }: Props) {
+export default function Perspective({
+  setCenteringImage,
+  image, setImage,
+  prevImage, setPrevImage,
+  corners, setCorners,
+  warpedImage, setWarpedImage,
+}: Props) {
   const navigate = useNavigate();
-  const [image, setImage] = useState<HTMLImageElement | null>(null);
-  const [prevImage, setPrevImage] = useState<HTMLImageElement | null>(null);
-  const [corners, setCorners] = useState<{x: number, y: number, label: string}[] | null>(null);
-  const [warpedImage, setWarpedImage] = useState<HTMLImageElement | null>(null);
   const [ratioW, setRatioW] = useState(5);
   const [ratioH, setRatioH] = useState(7);
   const [zoom, setZoom] = useState(1.5);

@@ -6,6 +6,10 @@ import Centering from './pages/Centering';
 
 function App() {
   const [centeringImage, setCenteringImage] = useState<HTMLImageElement | null>(null);
+  const [perspectiveImage, setPerspectiveImage] = useState<HTMLImageElement | null>(null);
+  const [perspectivePrevImage, setPerspectivePrevImage] = useState<HTMLImageElement | null>(null);
+  const [perspectiveCorners, setPerspectiveCorners] = useState<{x: number, y: number, label: string}[] | null>(null);
+  const [perspectiveWarpedImage, setPerspectiveWarpedImage] = useState<HTMLImageElement | null>(null);
 
   return (
     <div>
@@ -23,7 +27,19 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Perspective setCenteringImage={setCenteringImage} />} />
+          <Route path="/" element={
+            <Perspective
+              setCenteringImage={setCenteringImage}
+              image={perspectiveImage}
+              setImage={setPerspectiveImage}
+              prevImage={perspectivePrevImage}
+              setPrevImage={setPerspectivePrevImage}
+              corners={perspectiveCorners}
+              setCorners={setPerspectiveCorners}
+              warpedImage={perspectiveWarpedImage}
+              setWarpedImage={setPerspectiveWarpedImage}
+            />
+          } />
           <Route path="/centering-tool" element={<Centering image={centeringImage} setImage={setCenteringImage} />} />
         </Routes>
       </main>
