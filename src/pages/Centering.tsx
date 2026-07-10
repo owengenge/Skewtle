@@ -35,7 +35,7 @@ export default function Centering({ image, setImage }: Props) {
     return (
         <>
             <div className="page-intro">
-                <p className="page-intro-title">Centering Tool</p>
+                <p className="page-intro-title"><img src="/center-icon.svg" className="page-intro-icon" alt="" />Centering Tool</p>
                 <p className="page-intro-body">Align each pair of lines with the card's outside and inside borders to measure the centering ratio.</p>
             </div>
             <div className="centering-toolbar">

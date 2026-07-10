@@ -66,7 +66,7 @@ export default function Perspective({
   return (
     <>
       <div className="page-intro">
-        <p className="page-intro-title">Perspective Correction</p>
+        <p className="page-intro-title"><img src="/skew-icon.svg" className="page-intro-icon" alt="" />Perspective Correction</p>
         <p className="page-intro-body">Drag the handles to the card's corners to align its edges, then click Done to correct the image.</p>
       </div>
 

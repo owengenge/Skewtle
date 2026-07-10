@@ -15,9 +15,11 @@ function App() {
     <div>
       <nav className="nav">
         <NavLink to="/" className={({ isActive }) => `nav-item${isActive ? ' nav-item--active' : ''}`}>
+          <img src="/skew-icon.svg" className="nav-icon" alt="" />
           Perspective Correction
         </NavLink>
         <NavLink to="/centering-tool" className={({ isActive }) => `nav-item${isActive ? ' nav-item--active' : ''}`}>
+          <img src="/center-icon.svg" className="nav-icon" alt="" />
           Centering Tool
         </NavLink>
       </nav>
