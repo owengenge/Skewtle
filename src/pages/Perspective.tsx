@@ -74,17 +74,18 @@ export default function Perspective({ setCenteringImage }: Props) {
       )}
 
       {/** Prompt image to be uploaded */}
-      {!warpedImage && 
+      {!warpedImage && !corners &&
         <UploadImage image={image} setImage={setImage} />
       }
 
       {/** Image is uploaded and in corner selection */}
       {image && corners && !warpedImage && (
         <>
-          <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
           <p className="upload-tip-callout">
             Ensure the card is flat with some background visible around all edges.
           </p>
+          <UploadImage image={image} setImage={setImage} />
+          <button onClick={() => transform({ srcPoints, dstPoints, image, setWarpedImage, cardRatio })}>Done</button>
           <CornerSelector
             image={image}
             stageWidth={stageWidth}
@@ -99,13 +100,13 @@ export default function Perspective({ setCenteringImage }: Props) {
       {/** Image is transformed */}
       {warpedImage && (
         <>
+          <p className="info-callout">
+            Refining edge alignment will yield better results.
+          </p>
           <button onClick={() => {setWarpedImage(null); setImage(null)}} className='new-card-btn clear-btn'><Trash size={18}/></button>
           <button onClick={() => setWarpedImage(null)} className="edit-btn">Edit</button>
           <button onClick={() => { setCenteringImage(warpedImage); navigate('/centering-tool'); }} className='centering-btn'>Center</button>
           <span onClick={() => downloadImage(warpedImage)} className="download-btn"><Download size={18}/></span>
-          <p className="info-callout">
-            Refining edge alignment will yield better results.
-          </p>
           <img
             src={warpedImage.src}
             className="warped-img"

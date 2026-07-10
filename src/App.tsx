@@ -29,7 +29,7 @@ function App() {
       </main>
 
       <div className="footer">
-        <p>Skewtle · Open source · Made by Owen Genge</p>
+        <p>Skewtle · Made by Owen Genge</p>
       </div>
 
     </div>
