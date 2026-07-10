@@ -1,11 +1,11 @@
 import { Line, Rect } from 'react-konva';
 
-const STROKE_WIDTH = 1;
+const STROKE_WIDTH = .7;
 const DASH: [number, number] = [3, 1.5];
 const HANDLE_SIZE = 20; // square drag handle
 const HANDLE_RADIUS = 5;
 const HANDLE_STROKE_WIDTH = 1;
-const HANDLE_FILL_OPACITY = 0.5;
+const HANDLE_FILL_OPACITY = 0.2;
 const HANDLE_OFFSET = 24; // stagger the inner handle off-center so it never overlaps the outer handle
 
 interface Props {

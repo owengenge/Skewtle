@@ -1,17 +1,10 @@
-/* ============================================================
-   Skewtle — App.css
-   Component styling. DOM is untouched; layout is achieved with
-   block-flow + inline-block so the conditionally-rendered button
-   groups read as horizontal toolbars without markup changes.
-   ============================================================ */
-
 /* ---- App shell (the unclassed root <div> from App.tsx) ---- */
 #root > div {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(20px, 4vw, 40px) 20px 0;
+  padding: clamp(14px, 2.5vw, 26px) 20px 0;
 }
 
 /* ============================================================
@@ -20,7 +13,7 @@
 .nav {
   display: flex;
   gap: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   padding: 4px;
   background: var(--surface-2);
   border: 1px solid var(--line);
@@ -45,31 +38,12 @@
   box-shadow: var(--shadow-sm);
 }
 
-.nav-item--soon {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  opacity: 0.5;
-}
-
-.nav-badge {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 2px 6px;
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-  border-radius: var(--r-pill);
-}
-
 /* ============================================================
    HEADER
    ============================================================ */
 header {
   text-align: center;
-  padding: 0 0 clamp(24px, 4vh, 44px);
+  padding: 0 0 clamp(16px, 2.5vh, 28px);
 }
 
 header h1 {
@@ -96,7 +70,8 @@ header h1 {
 }
 
 header p {
-  margin-top: 14px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   font-family: var(--font-mono);
   font-size: clamp(11px, 1.4vw, 13px);
   text-transform: uppercase;
@@ -115,7 +90,7 @@ main {
   width: fit-content;
   max-width: min(100%, 640px);
   margin-inline: auto;
-  padding-bottom: 56px;
+  padding-bottom: 36px;
 }
 
 main > * { margin-inline: auto; }
@@ -130,7 +105,7 @@ main > * { margin-inline: auto; }
   justify-content: center;
   gap: 16px;
   width: 100%;
-  margin-bottom: 26px;
+  margin-bottom: 16px;
 }
 
 .customize-div > * { margin-bottom: 0; }
@@ -140,14 +115,14 @@ main > * { margin-inline: auto; }
    ============================================================ */
 .ratio-input {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   justify-content: center;
-  align-content: flex-start;
-  gap: 10px 12px;
-  flex: 1;
-  min-width: 180px;
-  padding: 12px 2px;
+  gap: 8px 6px;
+  flex: 0 1 auto;
+  min-width: 140px;
+  padding: 12px 16px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
@@ -156,21 +131,29 @@ main > * { margin-inline: auto; }
 
 /* "Card ratio" eyebrow */
 .ratio-input label:first-of-type {
-  flex-basis: 100%;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: var(--accent-deep);
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.ratio-input-fields {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px 6px;
 }
 
 .ratio-input input {
-  width: 64px;
-  padding: 10px 0;
+  width: 44px;
+  padding: 6px 0;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--ink);
   background: var(--surface-2);
@@ -190,25 +173,23 @@ main > * { margin-inline: auto; }
 
 .ratio-input span {
   font-family: var(--font-mono);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--faint);
-  margin: 0 -6px;
+  margin: 0 -3px;
 }
-
-/* In the corner-adjust state the ratio card grows to match the stage width. */
-main:has(.edit-img-div) .ratio-input { max-width: none; }
 
 /* ============================================================
    ZOOM SLIDER
    ============================================================ */
 .zoom-slider-div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
   flex: 1;
-  gap: 10px;
+  gap: 6px 10px;
   padding: 12px 22px;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -233,88 +214,46 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
 }
 
 .zoom-slider-div input[type="range"] {
+  flex-basis: 100%;
   accent-color: var(--accent);
-  width: 90%;
+  width: 100%;
 }
 
 /* ============================================================
-   UPLOAD
+   PAGE INTRO
    ============================================================ */
-.upload-tip-callout {
-  width: 100%;
-  margin-bottom: 24px;
-  padding: 12px 16px 12px 42px;
-  position: relative;
+.page-intro {
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 16px;
+  padding: 14px 18px;
   text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.page-intro-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.page-intro-body {
   font-size: 13px;
   line-height: 1.5;
   color: var(--ink-2);
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
-  border-radius: var(--r-md);
 }
-
-.upload-tip-callout::before {
-  content: "i";
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  width: 20px;
-  height: 20px;
-  display: grid;
-  place-items: center;
-  padding-right: 2px;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border-radius: var(--r-pill);
-}
-
-/* ============================================================
-   INFO CALLOUT 
-   ============================================================ */
-   .info-callout {
-    width: 100%;
-    margin-bottom: 24px;
-    padding: 12px 16px 12px 42px;
-    position: relative;
-    text-align: left;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--ink-2);
-    background: var(--accent-soft);
-    border: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
-    border-radius: var(--r-md);
-  }
-  
-  .info-callout::before {
-    content: "i";
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    width: 20px;
-    height: 20px;
-    display: grid;
-    place-items: center;
-    padding-right: 2px;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--accent-ink);
-    background: var(--accent);
-    border-radius: var(--r-pill);
-  }
 
 /* ============================================================
    UPLOAD
    ============================================================ */
 .upload-tip-callout {
-  width: 100%;
-  margin-bottom: 24px;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 16px;
   padding: 12px 16px 12px 42px;
   position: relative;
   text-align: left;
@@ -349,7 +288,8 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
 .upload-img-div {
   width: 60%;
   aspect-ratio: 5 / 7;
-  margin-bottom: 8px;
+  margin-top: 28px;
+  margin-bottom: 6px;
   padding: 30px 26px;
   display: flex;
   flex-direction: column;
@@ -379,12 +319,6 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
   margin-bottom: 0;
 }
 
-.upload-img-div p.upload-tip {
-  color: var(--line-strong);
-  font-size: clamp(12px, 1.5vw, 14px);
-  font-weight: 400;
-}
-
 .upload-img-div input[type="file"] {
   display: block;
   margin: 0 auto;
@@ -402,13 +336,50 @@ main:has(.edit-img-div) .ratio-input { max-width: none; }
   color: var(--accent-ink);
   background: var(--accent);
   border: none;
-  border-radius: var(--r-pill);
+  border-radius: var(--r-md);
   cursor: pointer;
   box-shadow: none;
 }
 
 .upload-img-div input[type="file"]::file-selector-button:hover {
   background: var(--accent-deep);
+}
+
+/* ============================================================
+   INFO CALLOUT
+   ============================================================ */
+.info-callout {
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 16px;
+  padding: 12px 16px 12px 42px;
+  position: relative;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in oklab, var(--accent) 18%, transparent);
+  border-radius: var(--r-md);
+}
+
+.info-callout::before {
+  content: "i";
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding-right: 2px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--r-pill);
 }
 
 /* ============================================================
@@ -430,7 +401,7 @@ main button {
   color: var(--ink);
   box-shadow: var(--shadow-sm);
   vertical-align: middle;
-  margin: 0 6px 22px;
+  margin: 0 6px 14px;
   transition: transform 0.15s ease, box-shadow 0.15s ease,
               background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
@@ -443,12 +414,23 @@ main button:hover {
 
 main button:active { transform: translateY(0); }
 
+.new-card-btn {
+  display: inline-grid;
+  place-items: center;
+}
+
 .clear-btn { color: var(--ink-2); }
 
 .clear-btn:hover {
   color: oklch(0.5 0.18 25);
   border-color: oklch(0.78 0.1 25);
   background: oklch(0.97 0.03 25);
+}
+
+/* .download-btn:hover's border-color has equal specificity and sits later
+   in this file, so it would otherwise win over the red hover above. */
+.download-btn.clear-btn:hover {
+  border-color: oklch(0.78 0.1 25);
 }
 
 /* ============================================================
@@ -470,48 +452,61 @@ main button:active { transform: translateY(0); }
 .edit-img-div canvas { border-radius: var(--r-lg); }
 
 /* ============================================================
-   CENTERING STATS
+  CENTERING STATS
    ============================================================ */
+.centering-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 16px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.centering-toolbar > * { margin: 0; }
+.centering-toolbar > .clear-btn { margin: 0; }
+.centering-toolbar > .upload-img-div { margin-top: 28px; margin-bottom: 6px; }
+
 .centering-stats {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
 }
 
 .centering-ratio {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 4px;
-  padding: 10px 18px;
+  height: 46px;
+  padding: 0 18px;
   background: var(--surface);
   border: 1.5px solid var(--line-strong);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   box-shadow: var(--shadow-sm);
   transition: border-color 0.15s ease;
 }
 
 .centering-ratio-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--ink);
   letter-spacing: 0.22em;
-  color: var(--accent-deep);
 }
 
 .centering-ratio-value {
-  font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
   font-weight: 700;
-  color: var(--ink);
 }
 
-.centering-ratio--good { border-color: oklch(0.65 0.16 145); }
-.centering-ratio--warn { border-color: oklch(0.75 0.16 90); }
-.centering-ratio--bad  { border-color: oklch(0.6 0.19 25); }
+.centering-ratio--good { border-color: oklch(78.537% 0.24676 141.632); background: oklch(0.95 0.04 141.632); }
+.centering-ratio--warn { border-color: oklch(77.686% 0.14449 82.021); background: oklch(0.95 0.04 82.021); }
+.centering-ratio--bad  { border-color: oklch(0.6 0.19 25); background: oklch(0.95 0.04 25); }
 
 /* ============================================================
    RESULT
@@ -521,7 +516,7 @@ main button:active { transform: translateY(0); }
   place-items: center;
   width: 46px;
   height: 46px;
-  margin: 0 6px 22px;
+  margin: 0 6px 14px;
   vertical-align: middle;
   color: var(--ink);
   background: var(--surface);
@@ -541,25 +536,9 @@ main button:active { transform: translateY(0); }
 
 .download-btn:active { transform: translateY(0); }
 
-.download-btn .material-symbols-outlined {
-  font-size: 22px;
-  line-height: 1;
-}
-
-.warped-img-div {
-  display: inline-block;
-  margin: 0 auto;
-  padding: 14px;
-  background: var(--surface);
+.warped-img {
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-lg);
-  line-height: 0;
-}
-
-.warped-img-div img {
-  border-radius: var(--r-sm);
-  box-shadow: 0 2px 10px oklch(0.3 0.04 270 / 0.18);
 }
 
 /* ============================================================
@@ -568,7 +547,7 @@ main button:active { transform: translateY(0); }
 .footer {
   margin-top: auto;
   width: 100%;
-  padding: 28px 16px 26px;
+  padding: 18px 16px 16px;
   text-align: center;
   border-top: 1px solid var(--line);
 }

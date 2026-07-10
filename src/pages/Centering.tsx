@@ -4,7 +4,7 @@ import EdgeSelector from "../components/EdgeSelector";
 import type { CenteringLines } from "../types/centeringLines";
 import { defaultCenteringLines } from "../utils/defaultCenteringLines";
 import { computeRatios } from "../utils/computeRatios";
-import { MAX_WIDTH, MAX_HEIGHT } from "../constants";
+import { CENTERING_MAX_WIDTH, CENTERING_MAX_HEIGHT } from "../constants";
 
 interface Props {
     image: HTMLImageElement | null;
@@ -15,7 +15,7 @@ export default function Centering({ image, setImage }: Props) {
     const [prevImage, setPrevImage] = useState<HTMLImageElement | null>(null);
     const [lines, setLines] = useState<CenteringLines | null>(null);
 
-    const scale = image ? Math.min(MAX_WIDTH / image.naturalWidth, MAX_HEIGHT / image.naturalHeight, 1) : 1;
+    const scale = image ? Math.min(CENTERING_MAX_WIDTH / image.naturalWidth, CENTERING_MAX_HEIGHT / image.naturalHeight, 1) : 1;
     const stageWidth = image ? image.naturalWidth * scale : 0;
     const stageHeight = image ? image.naturalHeight * scale : 0;
 
@@ -34,25 +34,28 @@ export default function Centering({ image, setImage }: Props) {
 
     return (
         <>
-            <p className="upload-tip-callout">
-                Align the lines with the card's outside and inside borders to measure the centering ratio.
-            </p>
-            <UploadImage image={image} setImage={setImage} />
+            <div className="page-intro">
+                <p className="page-intro-title">Centering Tool</p>
+                <p className="page-intro-body">Align each pair of lines with the card's outside and inside borders to measure the centering ratio.</p>
+            </div>
+            <div className="centering-toolbar">
+                <UploadImage image={image} setImage={setImage} />
+                {ratios && (
+                    <div className="centering-stats">
+                        <div className={`centering-ratio centering-ratio--${centeringTier(ratios.tb.top)}`}>
+                            <span className="centering-ratio-label">T/B:</span>
+                            <span className="centering-ratio-value">{ratios.tb.top.toFixed(1)} / {ratios.tb.bottom.toFixed(1)}</span>
+                        </div>
+                        <div className={`centering-ratio centering-ratio--${centeringTier(ratios.lr.left)}`}>
+                            <span className="centering-ratio-label">L/R:</span>
+                            <span className="centering-ratio-value">{ratios.lr.left.toFixed(1)} / {ratios.lr.right.toFixed(1)}</span>
+                        </div>
+                    </div>
+                )}
+            </div>
 
             {image && lines && (
                 <>
-                    {ratios && (
-                        <div className="centering-stats">
-                            <div className={`centering-ratio centering-ratio--${centeringTier(ratios.tb.top)}`}>
-                                <span className="centering-ratio-label">Top / Bottom</span>
-                                <span className="centering-ratio-value">{ratios.tb.top.toFixed(1)} / {ratios.tb.bottom.toFixed(1)}</span>
-                            </div>
-                            <div className={`centering-ratio centering-ratio--${centeringTier(ratios.lr.left)}`}>
-                                <span className="centering-ratio-label">Left / Right</span>
-                                <span className="centering-ratio-value">{ratios.lr.left.toFixed(1)} / {ratios.lr.right.toFixed(1)}</span>
-                            </div>
-                        </div>
-                    )}
                     <EdgeSelector
                         image={image}
                         stageWidth={stageWidth}

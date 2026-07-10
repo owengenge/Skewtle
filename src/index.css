@@ -109,25 +109,3 @@ button { cursor: pointer; }
   background: var(--accent);
   color: var(--accent-ink);
 }
-
-/* Material Symbols ligature utility.
-   The Google `Material+Symbols+Outlined` stylesheet ships only the
-   @font-face, not this helper class — without it the <span> renders the
-   literal word "download" instead of the glyph. */
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  font-feature-settings: 'liga';
-  -webkit-font-feature-settings: 'liga';
-  -moz-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
