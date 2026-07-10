@@ -21,6 +21,9 @@
 }
 
 .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--font-display);
   font-size: 11px;
   font-weight: 600;
@@ -30,6 +33,12 @@
   color: var(--muted);
   white-space: nowrap;
   text-decoration: none;
+}
+
+.nav-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
 }
 
 .nav-item--active {
@@ -235,10 +244,19 @@ main > * { margin-inline: auto; }
 }
 
 .page-intro-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.5;
   color: var(--ink);
+}
+
+.page-intro-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 .page-intro-body {
